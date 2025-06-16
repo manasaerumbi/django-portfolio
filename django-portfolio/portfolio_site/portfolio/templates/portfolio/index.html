@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manasa's Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#internships" class="nav-link">Internships</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sections -->
+    <section class="section" id="home">
+        <div class="content fade-in">
+            <img src="{% static 'images/profile.jpg' %}" alt="Profile" class="profile-img">
+            <h1>Hello, I'm Erumbi Manasa</h1>
+            <p>Welcome to my portfolio, which is built with Django.</p>
+            <p>
+    Dive in to explore my skills, projects, certifications, and journey in tech. I'm always excited to learn, build, and collaborate!
+</p>
+            <a href="{% static 'resume.pdf' %}" download class="btn">Download Resume</a>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="content fade-in">
+            <h2>About Me</h2>
+            <p>
+    I’m Erumbi Manasa, a Computer Science Engineering student with a passion for building creative and user-friendly web applications. 
+    I enjoy solving real-world problems using technology and continuously strive to improve my skills in full-stack development, 
+    particularly with Python, Java, and modern web technologies. Whether it's frontend design or backend logic, I love the process of turning ideas into working products.
+</p>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <div class="content fade-in">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>Java</li>
+                <li>Python</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Django</li>
+                <li>Git</li>
+                <li>GitHub</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <div class="content fade-in">
+            <h2>Projects</h2>
+            <p>Django Portfolio built with Django, HTML, Python, and CSS.</p>
+            <a href="https://github.com//your-portfolio-repo" class="btn" target="_blank">View on GitHub</a>
+        </div>
+    </section>
+
+    <section class="section" id="internships">
+        <div class="content fade-in">
+            <h2>Internships</h2>
+            <div class="certificates">
+                <!--<img src="{% static 'images/certificate1.jpg' %}" alt="Certificate 1"> -->
+                <img src="{% static 'images/thinkchamp.jpg' %}" alt="Certificate 2">
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="content fade-in">
+            <h2>Contact Me</h2>
+            <div class="contact-icons">
+                <a href="https://github.com/manasaerumbi" target="_blank">
+                    <img src="{% static 'icons/github.png' %}" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/erumbi-manasa-a2975226b/" target="_blank">
+                    <img src="{% static 'icons/linkedin.png' %}" alt="LinkedIn">
+                </a>
+                <a href="tel:+919347697084">
+                    <img src="{% static 'icons/phone.jpg' %}" alt="Call">
+                </a>
+                <a href="mailto:manasaerumbi@gmail.com">
+                    <img src="{% static 'icons/email.png' %}" alt="Message">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll animation for fade-in effect
+        const faders = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        faders.forEach(fader => {
+            observer.observe(fader);
+        });
+
+        // Active nav highlight
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 70;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
